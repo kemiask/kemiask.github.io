@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jump [ mika ]</title>
+  
+<link rel="shortcut icon" href="/favicon/favicon.ico">
+
+
+<link rel="stylesheet" href="/lib/highlight/monokai-sublime.css">
+
+
+<link rel="stylesheet" href="/lib/fancybox/jquery.fancybox.min.css">
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+
+
+<link rel="stylesheet" href="/css/milk.css">
+
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+<body>
+  <div class="milk-header">
+     
+
+  <nav class="header-nav">
+     
+    <ul class="nav-menu">
+      
+        <li id="Home">
+          <i class="fa fa-home" aria-hidden="true"></i>
+          <a href="/ ">Home</a>
+        </li>
+      
+        <li id="Archives">
+          <i class="fa fa-archive" aria-hidden="true"></i>
+          <a href="/archives ">Archives</a>
+        </li>
+      
+        <li id="About">
+          <i class="fa fa-user-circle" aria-hidden="true"></i>
+          <a href="/about ">About</a>
+        </li>
+      
+    </ul>
+    
+    
+      <span class="nav-date">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        <span id="date"></span>
+      </span>
+    
+    
+    
+      <span class="nav-system" id="nav-system"></span>
+    
+    
+    <span class="nav-access">
+      <i class="fa fa-universal-access" id="nav-access"></i>
+      <i class="fa fa-angle-down"></i>
+      <div class="dropdown-content" id="dropdown-content">
+        <ul class="social">
+          
+            <li>
+              <a target="_blank" rel="noopener" href="https://github.com/jiajun-c">
+                <i class="fa fa-github-alt" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+            <li>
+              <a href="mailto:chengjiajun20@gmail.com">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+              </a>
+            </li>
+          
+        </ul>
+        <ul>
+          <li><span>Power by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a></span></li>
+        </ul>
+      </div>
+    </span>
+  </nav>
+ 
+  </div>
+  <div class="milk-body">
+    
+<div class="draggable-toc">
+  <div class="toc-title">jump</div>
+  <p>process: <span>0</span></p>
+  <div class="progress-container">
+    <div class="progress-bar" id="bar"></div>
+  </div>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%B3%E8%B7%83%E9%97%AE%E9%A2%98"><span class="toc-text">跳跃问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%B1%82%E5%8F%AF%E5%88%B0%E8%BE%BE%E6%80%A7"><span class="toc-text">1. 求可到达性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%A4%A7%E6%84%8F"><span class="toc-text">1.1 大意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-solve"><span class="toc-text">1.2 solve</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%B1%82%E8%BE%BE%E5%88%B0%E7%9A%84%E6%9C%80%E5%B0%91%E6%AD%A5%E6%95%B0"><span class="toc-text">2. 求达到的最少步数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%A4%A7%E6%84%8F"><span class="toc-text">2.1 大意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-solve"><span class="toc-text">2.2 solve</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%B1%82%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E5%88%B0%E8%BE%BE%E4%B8%80%E4%B8%AA%E7%89%B9%E5%AE%9A%E7%9A%84%E7%82%B9"><span class="toc-text">3. 求是否可以到达一个特定的点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%A4%A7%E6%84%8F"><span class="toc-text">3.1 大意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-solve"><span class="toc-text">3.2 solve</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%AE%BE%E7%BD%AE%E4%BA%86%E6%9C%80%E5%B0%8F%E8%B7%B3%E8%B7%83%E8%B7%9D%E7%A6%BB%E5%92%8C%E6%9C%80%E5%A4%A7%E8%B7%B3%E8%B7%83%E8%B7%9D%E7%A6%BB%E6%B1%82%E8%83%BD%E5%90%A6%E5%88%B0%E8%BE%BE%E6%9C%80%E5%90%8E%E7%9A%84%E7%82%B9"><span class="toc-text">4. 设置了最小跳跃距离和最大跳跃距离求能否到达最后的点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%A4%A7%E6%84%8F"><span class="toc-text">4.1 大意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-solve"><span class="toc-text">4.2 solve</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%BE%97%E5%88%B0%E8%B7%B3%E8%B7%83%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E4%BB%B7%E5%80%BC"><span class="toc-text">5. 得到跳跃过程中的最大价值</span></a></li></ol></li></ol>
+</div>
+
+<div class="post-content" id="post-content">
+  <div id="top">jump</div>
+  <div class="post">
+    
+    <div class="content-categories">
+      
+      <i class="fa fa-location-arrow"></i>
+      <ul>
+        <li>categories</li>
+        
+      </ul>
+    
+    </div>
+    <hr>
+    
+    <h1 id="跳跃问题"><a href="#跳跃问题" class="headerlink" title="跳跃问题"></a>跳跃问题</h1><p>有一类常见的问题，在河上有n个点，求跳到某个位置所需要的最小步数或者是能否抵达<br>对于这类问题的解决通常是使用分块，搜索…</p>
+<h2 id="1-求可到达性"><a href="#1-求可到达性" class="headerlink" title="1. 求可到达性"></a>1. 求可到达性</h2><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/jump-game/">Jump Game</a></p>
+<h3 id="1-1-大意"><a href="#1-1-大意" class="headerlink" title="1.1 大意"></a>1.1 大意</h3><p>从每个位置能够跳跃的最大格数为这个点的数字，求能否到达最后一个位置</p>
+<h3 id="1-2-solve"><a href="#1-2-solve" class="headerlink" title="1.2 solve"></a>1.2 solve</h3><p>进行分块，每次的上限被更新为这个块的能够到达的最远距离</p>
+<pre><code class="cpp">class Solution &#123;
+public:
+#define N 1010
+    int dp[N];
+    bool canJump(vector&lt;int&gt;&amp; nums) &#123;
+        int now_pos = 0, next_pos = 0, i = 0;
+        int n = nums.size();
+        if (n &lt;= 1) return 1;
+        while (next_pos - i + 1 &gt; 0) &#123;
+            for (; i &lt;= now_pos; i++) &#123;
+                next_pos = max(next_pos, nums[i] + i);
+                if (next_pos &gt;= n - 1) return 1;
+            &#125;
+            now_pos = next_pos;
+        &#125;
+        return 0;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="2-求达到的最少步数"><a href="#2-求达到的最少步数" class="headerlink" title="2. 求达到的最少步数"></a>2. 求达到的最少步数</h2><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/jump-game-ii/">Jump Game II</a></p>
+<h3 id="2-1-大意"><a href="#2-1-大意" class="headerlink" title="2.1 大意"></a>2.1 大意</h3><p>从这个位置跳到最后一位位置所需要的最少步数，在每个点能够跳跃的步数为这个点对应的数字</p>
+<h3 id="2-2-solve"><a href="#2-2-solve" class="headerlink" title="2.2 solve"></a>2.2 solve</h3><p>此时我们可以将点按照跳跃的次数进行分块<br>下一次的结束位置为这一段的最大结束位置</p>
+<pre><code class="cpp">class Solution &#123;
+public:
+    int jump(vector&lt;int&gt;&amp; nums) &#123;
+        int now_max = 0, next_max = 0, level = 0, i = 0;
+        int n = nums.size();
+        if (n &lt;= 1) return 0;
+        while (next_max - i + 1 &gt; 0) &#123;
+            level ++;
+            for (; i &lt;= now_max; i++) &#123;
+                next_max = max(next_max, nums[i] + i);
+                if (next_max &gt;= n - 1) return level;
+            &#125;
+            now_max = next_max;
+        &#125;
+        return 0;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="3-求是否可以到达一个特定的点"><a href="#3-求是否可以到达一个特定的点" class="headerlink" title="3. 求是否可以到达一个特定的点"></a>3. 求是否可以到达一个特定的点</h2><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/jump-game-iii/">Jump Game III</a></p>
+<h3 id="3-1-大意"><a href="#3-1-大意" class="headerlink" title="3.1 大意"></a>3.1 大意</h3><p>每次可以跳跃的位置是i+arr[i] 和i - arr[i],求是否可以到达val为0的点</p>
+<h3 id="3-2-solve"><a href="#3-2-solve" class="headerlink" title="3.2 solve"></a>3.2 solve</h3><p>DFS or BFS is ok</p>
+<pre><code class="cpp">class Solution &#123;
+public:
+#define N 51000
+    queue&lt;int&gt;v;
+    int vis[N],  n;
+    void push(int x, queue&lt;int&gt;&amp;v) &#123;
+        if (x &lt; 0 ||x &gt;= n) return;
+        if (vis[x]) return;
+        v.push(x);
+        vis[x] = 1;
+    &#125;
+    bool canReach(vector&lt;int&gt;&amp; arr, int start) &#123;
+        n = arr.size();
+        push(start, v);
+        memset(vis, 0, sizeof vis);
+        while(!v.empty()) &#123;
+            int i = v.front();
+            if (arr[i]==0) return 1;
+            v.pop();
+            int to1 = i + arr[i];
+            int to2 = i - arr[i];
+            push(to1, v);
+            push(to2, v);
+         &#125;
+        return 0;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="4-设置了最小跳跃距离和最大跳跃距离求能否到达最后的点"><a href="#4-设置了最小跳跃距离和最大跳跃距离求能否到达最后的点" class="headerlink" title="4. 设置了最小跳跃距离和最大跳跃距离求能否到达最后的点"></a>4. 设置了最小跳跃距离和最大跳跃距离求能否到达最后的点</h2><h3 id="4-1-大意"><a href="#4-1-大意" class="headerlink" title="4.1 大意"></a>4.1 大意</h3><p>在每个点可以跳跃的距离都是在min ~ max之间，且仅当这个点为0的时候才可以进行跳跃<br><a target="_blank" rel="noopener" href="https://leetcode.com/problems/jump-game-vii/">Jump Game vii</a></p>
+<h3 id="4-2-solve"><a href="#4-2-solve" class="headerlink" title="4.2 solve"></a>4.2 solve</h3><p>使用前缀和数组进行求解，注意的是此时需要将v[0] &#x3D; 1, v[1] &#x3D; -1<br>后面每次将最小抵达的点+1,最大点+1的位置+1，最终最后一个点&gt;0时成立</p>
+<pre><code class="cpp">class Solution &#123;
+public:
+#define N 100100
+    bool canReach(string s, int minJump, int maxJump) &#123;
+        int n = s.size();
+        if (s.back() != &#39;0&#39;) return 0;
+        vector&lt;int&gt;v(n, 0);
+        v[0] = 1, v[1] = -1;
+        for (int i = 0; i &lt; n; i++) &#123;
+            if (i) v[i] += v[i-1];
+            if (s[i] == &#39;1&#39;) continue;
+            if (v[i] &amp;&amp; i + minJump &lt; n) v[i+minJump]++;
+            if (v[i] &amp;&amp; i + maxJump + 1 &lt; n) v[i+maxJump +1]--;
+        &#125;
+        return v.back() &gt; 0;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="5-得到跳跃过程中的最大价值"><a href="#5-得到跳跃过程中的最大价值" class="headerlink" title="5. 得到跳跃过程中的最大价值"></a>5. 得到跳跃过程中的最大价值</h2><p>在这种问题中，我们每次可以走到的位置为$\min(now_pow + k, n - 1)$。</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/jump-game-vi">Jump game vi</a></p>
+<p>使用deque进行存储，从最后面进行存储，当老人的岁数大于i + k的时候，将其出队，当老人的值小于当前的值时</p>
+<pre><code class="cpp">class Solution &#123;
+public:
+#define ll long long
+    deque&lt;int&gt;dq;
+    int maxResult(vector&lt;int&gt;&amp; nums, int k) &#123;
+        ll curr = 0;
+        for (int i = nums.size() - 1; i &gt;= 0; i--) &#123;
+            curr = nums[i] + (dq.empty() ? 0: nums[dq.front()]);
+            while (!dq.empty() &amp;&amp; curr &gt; nums[dq.back()]) &#123;
+                dq.pop_back();
+            &#125;
+            dq.push_back(i);
+            if (dq.front() &gt;= i + k) dq.pop_front();
+            nums[i] = curr;
+        &#125;
+        return curr;
+    &#125;
+&#125;;
+</code></pre>
+
+    
+    <hr>
+    <div class="content-tags">
+      
+      <i class="fa fa-tags"></i>
+      <ul>
+        
+        <li><a href="/tags/algorithm/">
+          algorithm
+        </a></li>
+      
+        <li><a href="/tags/leetcode/">
+          leetcode
+        </a></li>
+      
+      </ul>
+    
+    </div>
+    
+     
+<div class="comment-tabs" id="comment-tabs">
+  comment:
+  <ul>
+    
+      <li><a href="#Valine">Valine</a></li>
+    
+    
+      <li><a href="#LiveRe">LiveRe</a></li>
+    
+    
+      <li><a href="#ChangYan">ChangYan</a></li>
+    
+  </ul>
+  
+  
+    <div id="ChangYan">
+      <!--PC和WAP自适应版-->
+      <div id="SOHUCS" ></div> 
+      <script type="text/javascript"> 
+      (function(){ 
+      var appid = 'cyuGH4lBk'; 
+      var conf = 'ae32d85e4ca99348209aedfd3ae01478'; 
+      var width = window.innerWidth || document.documentElement.clientWidth; 
+      if (width < 960) {
+      var head = document.getElementsByTagName('head')[0]||document.head||document.documentElement;
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.charset = 'utf-8';
+      script.id = 'changyan_mobile_js';
+      script.src = 'https://cy-cdn.kuaizhan.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf;
+      head.appendChild(script);
+      } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://cy-cdn.kuaizhan.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); 
+      </script>
+    </div>
+   
+  
+  
+    <div id="LiveRe">
+      
+        <!-- LiveRe City install code -->
+        <div id="lv-container" data-id="city" data-uid="MTAyMC80NjA4MS8yMjU5Mg==">
+          <script type="text/javascript">
+            (function(d, s) {
+              var j, e = d.getElementsByTagName(s)[0];
+              if (typeof LivereTower === 'function') { return; }
+              j = d.createElement(s);
+              j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+              j.async = true;
+              e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+          </script>
+          <noscript>Please activate JavaScript for write a comment in LiveRe</noscript>
+          </div>
+          <!-- completed City install code -->
+        
+    </div>
+  
+  
+  
+    <div id="Valine">
+      <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+      <div id="vcomments"></div>
+      <script>
+        new Valine({
+          el: '#vcomments',
+          appId: '5bHFwYPW2iHWCiV7WmNRSenk-gzGzoHsz',
+          appKey: '2q4UgVDTmeJf9Phe8VbnNKyC',
+          avatar: 'monsterid',
+          enableQQ: true
+        })
+      </script>
+    </div>
+   
+</div>
+
+  </div>
+</div>
+ 
+<div>
+  <button id="scroll2top">back to top</button>
+</div>
+  </div>
+  
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/jquery/jquery-ui.min.js"></script>
+
+
+<script src="/lib/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+<script src="/lib/highlight/highlight.pack.js"></script>
+
+<script>
+  hljs.highlightAll();
+</script>
+
+
+<script src="/js/milk.js"></script>
+
+
+</body>
+</html>
